@@ -3,10 +3,557 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>こまきweb制作所</title>
+    <title>こまきWEB制作 - デザイン改善案</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* ヘッダー */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #04384C;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #04384C;
+        }
+
+        /* ファーストビュー */
+        #hero-section {
+            height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-placeholder {
+            width: 624px;
+            height: 436px;
+            background: #04384C;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* 固定お問い合わせボタン */
+        .fixed-contact {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+        }
+
+        .contact-btn {
+            background: #04384C;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 20px rgba(4, 56, 76, 0.3);
+            transition: all 0.3s;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+
+        .contact-btn:hover {
+            background: #033045;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(4, 56, 76, 0.4);
+        }
+
+        /* メインコンテンツ */
+        main {
+            margin-top: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #04384C;
+            font-weight: bold;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        /* サービス紹介 */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #f0f0f0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: #04384C;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #04384C;
+            font-weight: bold;
+        }
+
+        .service-description {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* 選ばれる理由 */
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .reason-item {
+            text-align: center;
+        }
+
+        .reason-number {
+            width: 50px;
+            height: 50px;
+            background: #04384C;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .reason-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #04384C;
+            font-weight: bold;
+        }
+
+        .reason-description {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* 実績セクション */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .work-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .work-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .work-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        .work-content {
+            padding: 1.5rem;
+        }
+
+        .work-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #04384C;
+            font-weight: bold;
+        }
+
+        .work-description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* 会社概要 */
+        .company-info {
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+        }
+
+        .info-table {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 1rem 2rem;
+            align-items: start;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #04384C;
+        }
+
+        .info-value {
+            color: #333;
+        }
+
+        /* お問い合わせセクション */
+        .contact-section {
+            background: linear-gradient(135deg, #04384C, #033045);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-section .section-title {
+            color: white;
+        }
+
+        .contact-section .section-subtitle {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .contact-form-btn {
+            display: inline-block;
+            background: white;
+            color: #04384C;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 2rem;
+            transition: all 0.3s;
+        }
+
+        .contact-form-btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        /* フッター */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .fixed-contact {
+                display: none;
+            }
+
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+
+            .hero-placeholder {
+                width: 100%;
+                max-width: 400px;
+                height: 280px;
+            }
+
+            .info-table {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .info-label {
+                margin-top: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>こまきweb制作所</h1>
-    <p>Web制作のご依頼承ります</p>
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-content">
+            <div class="logo">こまきWEB制作</div>
+            <nav>
+                <ul>
+                    <li><a href="#hero">ホーム</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#works">実績</a></li>
+                    <li><a href="#about">会社概要</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 固定お問い合わせボタン -->
+    <div class="fixed-contact">
+        <a href="#contact" class="contact-btn">お問い合わせ</a>
+    </div>
+
+    <!-- ファーストビュー -->
+    <section id="hero-section">
+        <div class="hero-placeholder">
+            現在の3Dアニメーション<br>（WebGL/Three.js）<br>がここに表示されます
+        </div>
+    </section>
+
+    <main>
+        <!-- サービス紹介 -->
+        <section id="services" class="section">
+            <div class="container">
+                <h2 class="section-title">サービス</h2>
+                <p class="section-subtitle">ちょっとしたご相談から、サイト制作全体のご依頼までお気軽にご相談いただけます</p>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🌐</div>
+                        <h3 class="service-title">Webサイト制作</h3>
+                        <p class="service-description">WordPressを中心に、企業サイト・個人サイト・LPなどの制作に対応します。テーマカスタマイズ、レスポンシブ対応、SEO内部施策も含めて一貫して行います。</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🎨</div>
+                        <h3 class="service-title">デザイン制作</h3>
+                        <p class="service-description">バナー、LP、Webデザイン全体のトーン設計やUI/UX改善など、見た目だけでなく使いやすさにも配慮したデザインを行います。</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🔧</div>
+                        <h3 class="service-title">サイト運用・保守</h3>
+                        <p class="service-description">WordPressのアップデート、バックアップ、セキュリティ対策などの保守作業に加えて、日々の更新代行など運用面もサポートします。</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">⚡</div>
+                        <h3 class="service-title">機能追加・改修対応</h3>
+                        <p class="service-description">お問い合わせフォームの追加、デザインや構成の見直し、各種機能の拡張対応など、スポットでの開発・改修作業も柔軟に対応可能です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 選ばれる理由 -->
+        <section class="section" style="background: #f8f9fa;">
+            <div class="container">
+                <h2 class="section-title">選ばれる理由</h2>
+                <p class="section-subtitle">お客様に信頼していただける3つのポイント</p>
+                
+                <div class="reasons-grid">
+                    <div class="reason-item">
+                        <div class="reason-number">1</div>
+                        <h3 class="reason-title">丁寧なヒアリング</h3>
+                        <p class="reason-description">お客様のご要望を細かくお聞きし、最適なソリューションをご提案します。制作後のイメージを共有しながら進めていきます。</p>
+                    </div>
+                    
+                    <div class="reason-item">
+                        <div class="reason-number">2</div>
+                        <h3 class="reason-title">レスポンシブ対応</h3>
+                        <p class="reason-description">スマートフォン、タブレット、PCすべてのデバイスで美しく表示されるレスポンシブデザインを標準対応しています。</p>
+                    </div>
+                    
+                    <div class="reason-item">
+                        <div class="reason-number">3</div>
+                        <h3 class="reason-title">アフターサポート</h3>
+                        <p class="reason-description">制作後の運用・保守もしっかりサポート。困ったときはいつでもご相談いただけます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 制作実績 -->
+        <section id="works" class="section">
+            <div class="container">
+                <h2 class="section-title">制作実績</h2>
+                <p class="section-subtitle">これまでに手がけた制作事例をご紹介します</p>
+                
+                <div class="works-grid">
+                    <div class="work-card">
+                        <div class="work-image">制作事例1</div>
+                        <div class="work-content">
+                            <h3 class="work-title">企業サイト制作</h3>
+                            <p class="work-description">WordPress / レスポンシブ対応 / SEO対策</p>
+                        </div>
+                    </div>
+                    
+                    <div class="work-card">
+                        <div class="work-image">制作事例2</div>
+                        <div class="work-content">
+                            <h3 class="work-title">ランディングページ</h3>
+                            <p class="work-description">コンバージョン重視設計 / A/Bテスト対応</p>
+                        </div>
+                    </div>
+                    
+                    <div class="work-card">
+                        <div class="work-image">制作事例3</div>
+                        <div class="work-content">
+                            <h3 class="work-title">ECサイト構築</h3>
+                            <p class="work-description">WooCommerce / 決済システム連携</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 会社概要 -->
+        <section id="about" class="section" style="background: #f8f9fa;">
+            <div class="container">
+                <h2 class="section-title">会社概要</h2>
+                <p class="section-subtitle">こまきWEB制作の基本情報</p>
+                
+                <div class="company-info">
+                    <div class="info-table">
+                        <div class="info-label">事業者名</div>
+                        <div class="info-value">こまきWEB制作</div>
+                        
+                        <div class="info-label">代表者</div>
+                        <div class="info-value">小牧 太郎</div>
+                        
+                        <div class="info-label">所在地</div>
+                        <div class="info-value">愛知県小牧市</div>
+                        
+                        <div class="info-label">事業内容</div>
+                        <div class="info-value">Webサイト制作、デザイン制作、サイト運用・保守、機能追加・改修対応、その他技術支援</div>
+                        
+                        <div class="info-label">対応地域</div>
+                        <div class="info-value">全国対応（オンライン）</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- お問い合わせ -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <h2 class="section-title">お問い合わせ</h2>
+                <p class="section-subtitle">Webサイト制作に関するご相談はお気軽にどうぞ</p>
+                
+                <a href="#" class="contact-form-btn">お問い合わせフォームへ</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 こまきWEB制作 All Rights Reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
