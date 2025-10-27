@@ -1,0 +1,381 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", Meiryo, sans-serif;
+  line-height: 1.7;
+  color: #333;
+  background-color: #fff;
+}
+
+/* ヘッダー */
+header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #04384c;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #04384c;
+}
+
+/* ファーストビュー */
+#hero-section {
+  height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-placeholder {
+  width: 624px;
+  height: 436px;
+  background: #04384c;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+}
+
+/* 固定お問い合わせボタン */
+.fixed-contact {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+}
+
+.contact-btn {
+  background: #04384c;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 20px rgba(4, 56, 76, 0.3);
+  transition: all 0.3s;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.contact-btn:hover {
+  background: #033045;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(4, 56, 76, 0.4);
+}
+
+/* メインコンテンツ */
+main {
+  margin-top: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #04384c;
+  font-weight: bold;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 4rem;
+  font-size: 1.1rem;
+}
+
+/* サービス紹介 */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.service-card {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid #f0f0f0;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.service-icon {
+  width: 60px;
+  height: 60px;
+  background: #04384c;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.service-title {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #04384c;
+  font-weight: bold;
+}
+
+.service-description {
+  color: #666;
+  line-height: 1.7;
+}
+
+/* 選ばれる理由 */
+.reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.reason-item {
+  text-align: center;
+}
+
+.reason-number {
+  width: 50px;
+  height: 50px;
+  background: #04384c;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.reason-title {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #04384c;
+  font-weight: bold;
+}
+
+.reason-description {
+  color: #666;
+  line-height: 1.7;
+}
+
+/* 実績セクション */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.work-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s;
+}
+
+.work-card:hover {
+  transform: translateY(-5px);
+}
+
+.work-image {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+}
+
+.work-content {
+  padding: 1.5rem;
+}
+
+.work-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #04384c;
+  font-weight: bold;
+}
+
+.work-description {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* 会社概要 */
+.company-info {
+  background: #f8f9fa;
+  padding: 3rem;
+  border-radius: 15px;
+  margin-top: 3rem;
+}
+
+.info-table {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 1rem 2rem;
+  align-items: start;
+}
+
+.info-label {
+  font-weight: bold;
+  color: #04384c;
+}
+
+.info-value {
+  color: #333;
+}
+
+/* お問い合わせセクション */
+.contact-section {
+  background: linear-gradient(135deg, #04384c, #033045);
+  color: white;
+  text-align: center;
+}
+
+.contact-section .section-title {
+  color: white;
+}
+
+.contact-section .section-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-form-btn {
+  display: inline-block;
+  background: white;
+  color: #04384c;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 2rem;
+  transition: all 0.3s;
+}
+
+.contact-form-btn:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+}
+
+/* フッター */
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .fixed-contact {
+    display: none;
+  }
+
+  .header-content {
+    padding: 0 1rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  nav ul {
+    gap: 1rem;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+  }
+
+  .hero-placeholder {
+    width: 100%;
+    max-width: 400px;
+    height: 280px;
+  }
+
+  .info-table {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .info-label {
+    margin-top: 1rem;
+  }
+}
